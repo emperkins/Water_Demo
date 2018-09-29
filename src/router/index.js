@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from 'axios'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -11,7 +12,9 @@ import ListView from '../components/ListView.vue'
 import LocationView from '../components/LocationView.vue'
 import WaterSystem from '../components/WaterSystem.vue'
 import ControlPoints from '../components/ControlPoints.vue'
+import AxiosTest from '../components/AxiosTest.vue'
 
+Vue.use(axios)
 Vue.use(Router)
 
 export default new Router({
@@ -70,6 +73,11 @@ export default new Router({
             path: '/controlpoints',
             name: 'ControlPoints',
             component: ControlPoints
+        },
+        {
+            path: '/axiostest',
+            name: 'AxiosTest',
+            component: AxiosTest
         },
         {
             path: '/login',
