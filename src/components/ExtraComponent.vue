@@ -1,6 +1,7 @@
 <template>
     <v-container fluid>
         <v-layout column align-center><br><br>
+            <img src="@/assets/FACS_Logo.png" width="200px" alt="FACS Logo"><br>
             <h1>Client Login</h1><br>
             <hr width="15%">
             <br>

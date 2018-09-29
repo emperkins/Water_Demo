@@ -185,6 +185,13 @@
                         <v-layout fill-height>
                           <v-flex xs3 align-end flexbox>
                             <span class="headline white--text" v-text="card.title"></span>
+                            <v-progress-circular
+                                    :value="card.value"
+                                    :color="card.color"
+                                    size="80"
+                            >
+                              {{ card.value }}
+                            </v-progress-circular>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -193,22 +200,7 @@
                   <v-card-actions>
                     <v-container fluid grid-list-sm>
                       <v-layout>
-                        <v-img
-                                :src="card.polar"
-                                :lazy-src="card.polar"
-                                aspect-ratio="1"
-                                height="auto"
-                                width="50%"
-                                contain
-                                class="white lighten-2"
-                        ></v-img>
-                        <v-progress-circular
-                                :value="card.value"
-                                :color="card.color"
-                                size="80"
-                        >
-                          {{ card.value }}
-                        </v-progress-circular>
+                          <Polar/>
                       </v-layout>
                       </v-containter>
                       <v-container>
@@ -245,9 +237,13 @@
 </template>
 
 <script>
+    import Polar from '../components/Polar'
     import Auth from './../auth/AuthService';
     const auth = new Auth();
   export default {
+      components: {
+          Polar
+      },
       methods: {
           handleLogout() {
               auth.logout();
