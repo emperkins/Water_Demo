@@ -148,13 +148,13 @@
             </div>
 
             <v-flex xs12>
+                <v-toolbar color="white" light>
+                    <v-toolbar-side-icon><router-link to="/watersystemdashboard"><i class="material-icons">
+                        view_module
+                    </i></router-link></v-toolbar-side-icon>
+                    <h1 class="text-lg-left">Facility 2 Water Systems</h1>
+                </v-toolbar>
                 <v-card height="100%">
-                    <v-card-text>
-                        <h1 class="text-lg-left">Facility 2 Water Systems</h1>
-                        <hr>
-                    </v-card-text>
-
-
 
                     <v-tabs
                             show-arrows
@@ -214,39 +214,152 @@
                                         </template>
                                     </v-data-table>
                                 </v-container>
+
+
+
+                                                        <div>
+                                                            <v-data-table
+                                                                    :headers="entryheaders"
+                                                                    :items="desserts"
+                                                            >
+                                                                <template slot="items" slot-scope="props">
+                                                                    <td>
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.name"
+                                                                                lazy
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        > {{ props.item.name }}
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.name"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                    <td>
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.calories"
+                                                                                lazy
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        > {{ props.item.calories }}
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.calories"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                    <td>
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.fat"
+                                                                                lazy
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        > {{ props.item.fat }}
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.fat"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                    <td>
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.carbs"
+                                                                                lazy
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        > {{ props.item.carbs }}
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.carbs"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                    <td>
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.protein"
+                                                                                lazy
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        > {{ props.item.protein }}
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.protein"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                    <td class="text-xs-right">
+                                                                        <v-edit-dialog
+                                                                                :return-value.sync="props.item.iron"
+                                                                                large
+                                                                                lazy
+                                                                                persistent
+                                                                                @save="save"
+                                                                                @cancel="cancel"
+                                                                                @open="open"
+                                                                                @close="close"
+                                                                        >
+                                                                            <div>{{ props.item.iron }}</div>
+                                                                            <div slot="input" class="mt-3 title">Update Iron</div>
+                                                                            <v-text-field
+                                                                                    slot="input"
+                                                                                    v-model="props.item.iron"
+                                                                                    :rules="[max25chars]"
+                                                                                    label="Edit"
+                                                                                    single-line
+                                                                                    counter
+                                                                                    autofocus
+                                                                            ></v-text-field>
+                                                                        </v-edit-dialog>
+                                                                    </td>
+                                                                </template>
+                                                                <template slot="pageText" slot-scope="{ pageStart, pageStop }">
+                                                                    From {{ pageStart }} to {{ pageStop }}
+                                                                </template>
+                                                            </v-data-table>
+
+                                                            <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                                                                {{ snackText }}
+                                                                <v-btn flat @click="snack = false">Close</v-btn>
+                                                            </v-snackbar>
+                                                        </div>
+
+
                                                     </v-card>
                                                 </v-flex>
                             </v-tab-item>
                         </v-tabs-items>
                     </v-tabs>
-
-
-
-        <v-container fluid grid-list-md>
-            <v-layout row wrap>
-        <v-flex d-flex>
-            <v-layout row wrap>
-                <v-flex
-                        v-for="card in cards"
-                        :key="card.title"
-                        d-flex
-                >
-                    <router-link to="#tab-Chiller">
-                    <v-card>
-                        <v-card-text>{{ card.title }}</v-card-text>
-                        <v-progress-circular
-                                :value="card.hwvalue"
-                                :color="card.hwcolor"
-                                size="60"
-                        >
-                            Score: {{ card.score }}
-                        </v-progress-circular>
-                        <v-card-text></v-card-text>
-                    </v-card></router-link>
-                </v-flex>
-                    </v-layout>
-        </v-container>
-
 
 
 
@@ -264,6 +377,24 @@
         methods: {
             handleLogout() {
                 auth.logout();
+            },
+            save () {
+                this.snack = true
+                this.snackColor = 'success'
+                this.snackText = 'Data saved'
+            },
+            cancel () {
+                this.snack = true
+                this.snackColor = 'error'
+                this.snackText = 'Canceled'
+            },
+            open () {
+                this.snack = true
+                this.snackColor = 'info'
+                this.snackText = 'Dialog opened'
+            },
+            close () {
+                console.log('Dialog closed')
             }
         },
         data: () => ({
@@ -477,6 +608,116 @@
                             ]
                         }
                     ],
+            snack: false,
+            snackColor: '',
+            snackText: '',
+            max25chars: (v) => v.length <= 25 || 'Input too long!',
+            pagination: {},
+            entryheaders: [
+                {
+                    text: 'Dessert (100g serving)',
+                    align: 'left',
+                    sortable: false,
+                    value: 'name'
+                },
+                {text: 'Calories', value: 'calories'},
+                {text: 'Fat (g)', value: 'fat'},
+                {text: 'Carbs (g)', value: 'carbs'},
+                {text: 'Protein (g)', value: 'protein'},
+                {text: 'Iron (%)', value: 'iron'}
+            ],
+            desserts: [
+                {
+                    value: false,
+                    name: 'Frozen Yogurt',
+                    calories: 159,
+                    fat: 6.0,
+                    carbs: 24,
+                    protein: 4.0,
+                    iron: '1%'
+                },
+                {
+                    value: false,
+                    name: 'Ice cream sandwich',
+                    calories: 237,
+                    fat: 9.0,
+                    carbs: 37,
+                    protein: 4.3,
+                    iron: '1%'
+                },
+                {
+                    value: false,
+                    name: 'Eclair',
+                    calories: 262,
+                    fat: 16.0,
+                    carbs: 23,
+                    protein: 6.0,
+                    iron: '7%'
+                },
+                {
+                    value: false,
+                    name: 'Cupcake',
+                    calories: 305,
+                    fat: 3.7,
+                    carbs: 67,
+                    protein: 4.3,
+                    iron: '8%'
+                },
+                {
+                    value: false,
+                    name: 'Gingerbread',
+                    calories: 356,
+                    fat: 16.0,
+                    carbs: 49,
+                    protein: 3.9,
+                    iron: '16%'
+                },
+                {
+                    value: false,
+                    name: 'Jelly bean',
+                    calories: 375,
+                    fat: 0.0,
+                    carbs: 94,
+                    protein: 0.0,
+                    iron: '0%'
+                },
+                {
+                    value: false,
+                    name: 'Lollipop',
+                    calories: 392,
+                    fat: 0.2,
+                    carbs: 98,
+                    protein: 0,
+                    iron: '2%'
+                },
+                {
+                    value: false,
+                    name: 'Honeycomb',
+                    calories: 408,
+                    fat: 3.2,
+                    carbs: 87,
+                    protein: 6.5,
+                    iron: '45%'
+                },
+                {
+                    value: false,
+                    name: 'Donut',
+                    calories: 452,
+                    fat: 25.0,
+                    carbs: 51,
+                    protein: 4.9,
+                    iron: '22%'
+                },
+                {
+                    value: false,
+                    name: 'KitKat',
+                    calories: 518,
+                    fat: 26.0,
+                    carbs: 65,
+                    protein: 7,
+                    iron: '6%'
+                }
+            ],
             headers: [{
                 icon: 'bubble_chart'
             }],
@@ -496,8 +737,6 @@
                 ['View', 'insert_drive_file', 'https://facs-jc-api-demo.azurewebsites.net/listview'],
                 ['Delete', 'delete']
             ],
-            text: 'Lorem ipsum dolor sit amet,',
-            lorem: 'Lorem ipsum dolor sit amet,',
             drawer: false
         })
     }
