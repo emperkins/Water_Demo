@@ -166,65 +166,20 @@
           <v-layout row wrap>
             <v-container fluid grid-list-md>
               <v-layout row wrap>
-                <v-flex
-                        v-for="card in cards"
-                        :key="card.title"
-                        d-flex xs12 sm6 md4>
-                  <v-card>
-
-                  <router-link to="/profileview">
-                    <v-card-media
-                            :src="card.src"
-                            height="200px"
-                    >
-                      <v-container
-                              fill-height
-                              fluid
-                              pa-2
-                      >
-                        <v-layout fill-height>
-                          <v-flex xs3 align-end flexbox>
-                            <span class="headline white--text" v-text="card.title"></span>
-                            <v-progress-circular
-                                    :value="card.value"
-                                    :color="card.color"
-                                    size="80"
-                            >
-                              {{ card.value }}
-                            </v-progress-circular>
-                          </v-flex>
-                        </v-layout>
-                      </v-container>
-                    </v-card-media></router-link>
-
-                  <v-card-actions>
-                    <v-container fluid grid-list-sm>
-                      <v-layout>
-                          <Polar/>
-                      </v-layout>
-                      </v-containter>
-                      <v-container>
-                        <v-data-table
-                                :headers="card.headers"
-                                :items="card.systems"
-                                hide-actions
-                                class="elevation-1"
-                        >
-                          <template slot="items" slot-scope="props">
-
-                            <td><router-link to="/watersystem">{{ props.item.name }}</router-link></td>
-                            <td class="text-xs-right">{{ props.item.score }}</td>
-                            <td class="text-xs-right">
-                              <v-progress-linear
-                                      :color="props.item.hwcolor"
-                                      height="10"
-                                      :value="props.item.hwvalue"
-                              ></v-progress-linear></td>
-                          </template>
-                        </v-data-table>
-                      </v-container>
-                  </v-card-actions>
-                </v-card>
+                <v-flex d-flex xs12 sm6 md4>
+                <Card/>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md4>
+                  <Card/>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md4>
+                  <Card/>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md4>
+                  <Card/>
+                </v-flex>
+                <v-flex d-flex xs12 sm6 md4>
+                  <Card/>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -237,12 +192,14 @@
 </template>
 
 <script>
+    import Card from './Card'
     import Polar from '../components/Polar'
     import Auth from './../auth/AuthService';
     const auth = new Auth();
   export default {
       components: {
-          Polar
+          Polar,
+          Card
       },
       methods: {
           handleLogout() {
@@ -265,41 +222,32 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
                     watersrc: '/watersystem#tab-Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
                     watersrc: '/watersystem#tab-Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
                     watersrc: '/watersystem#tab-Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
                     watersrc: '/watersystem#tab-Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -317,37 +265,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -365,37 +304,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -413,37 +343,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -461,37 +382,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -509,37 +421,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -557,37 +460,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -605,37 +499,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -653,37 +538,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -701,37 +577,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -749,37 +616,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -797,37 +655,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -845,37 +694,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -893,37 +733,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -941,37 +772,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -989,37 +811,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -1037,37 +850,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -1085,37 +889,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -1133,37 +928,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -1181,37 +967,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         },
@@ -1229,37 +1006,28 @@
                     sortable: false,
                     value: 'name'
                 },
-                { text: 'Score', value: 'score' },
-                { text: 'Progress', value: 'progress' }
+                { text: 'Score', value: 'score' }
             ],
             systems: [
                 {
                     value: false,
                     name: 'Hot Water',
-                    score: 2.1,
-                    hwcolor: 'info',
-                    hwvalue: 20
+                    score: 2.1
                 },
                 {
                     value: false,
                     name: 'Cold Water',
-                    score: 3.8,
-                    hwcolor: 'warning',
-                    hwvalue: 60
+                    score: 3.8
                 },
                 {
                     value: false,
                     name: 'Incoming',
-                    score: 5.9,
-                    hwcolor: 'success',
-                    hwvalue: 90
+                    score: 5.9
                 },
                 {
                     value: false,
                     name: 'Chiller',
-                    score: 1.0,
-                    hwcolor: 'error',
-                    hwvalue: 10
+                    score: 1.0
                 }
             ]
         }

@@ -13,6 +13,7 @@ import LocationView from '../components/LocationView.vue'
 import WaterSystem from '../components/WaterSystem.vue'
 import ControlPoints from '../components/ControlPoints.vue'
 import AxiosTest from '../components/AxiosTest.vue'
+import WaterSystemDashboard from '../components/WaterSystemDashboard.vue'
 
 Vue.use(axios)
 Vue.use(Router)
@@ -83,6 +84,11 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/watersystemdashboard',
+            name: 'WaterSystemDashboard',
+            component: WaterSystemDashboard
         }
     ]
 })
